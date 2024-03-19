@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LENGTH 100
+
+void replacePattern(char *str, const char *pattern, const char *replace) {
+    // Implement the replacePattern function
+    // ...
+}
+
+int main() {
+    char mainString[MAX_LENGTH];
+    char pattern[MAX_LENGTH];
+    char replace[MAX_LENGTH];
+    
+    // Input main string, pattern, and replacement
+    printf("Enter the main string: ");
+    fgets(mainString, MAX_LENGTH, stdin);
+    printf("Enter the pattern to replace: ");
+    fgets(pattern, MAX_LENGTH, stdin);
+    printf("Enter the replacement string: ");
+    fgets(replace, MAX_LENGTH, stdin);
+    
+    // Remove newline characters from inputs
+    mainString[strcspn(mainString, "\n")] = '\0';
+    pattern[strcspn(pattern, "\n")] = '\0';
+    replace[strcspn(replace, "\n")] = '\0';
+    
+    // Perform pattern matching and replacement
+    if (strstr(mainString, pattern) != NULL) {
+        replacePattern(mainString, pattern, replace);
+        printf("Pattern found and replaced:\n%s\n", mainString);
+    } else {
+        printf("Pattern not found in the main string.\n");
+    }
+    
+    return 0;
+}
