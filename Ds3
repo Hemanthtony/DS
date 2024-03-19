@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Day {
+    char name[20];
+    int date;
+    char activity[100];
+};
+
+struct Day createDay() {
+    struct Day day;
+    printf("Enter the name of the day, date, and activity: ");
+    scanf("%s %d", day.name, &day.date);
+    while (getchar() != '\n'); // Clear input buffer
+    fgets(day.activity, sizeof(day.activity), stdin);
+    day.activity[strcspn(day.activity, "\n")] = '\0'; // Remove trailing newline
+    return day;
+}
+
+void read(struct Day calendar[7]) {
+    for (int i = 0; i < 7; i++) {
+        printf("\nEnter details for day %d:\n", i + 1);
+        calendar[i] = createDay();
+    }
+}
+
+void display(struct Day calendar[7]) {
+    printf("\nCalendar for the week:\n");
+    for (int i = 0; i < 7; i++) {
+        printf("Day %d: %s, Date: %d\n", i + 1, calendar[i].name, calendar[i].date);
+        printf("Activity: %s\n\n", calendar[i].activity);
+    }
+}
+
+int main() {
+    struct Day calendar[7];
+    printf("Create a weekly calendar:\n");
+    read(calendar);
+    display(calendar);
+    return 0;
+}
